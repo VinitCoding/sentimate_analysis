@@ -6,11 +6,11 @@ import falling_graph_img from '../assets/falling_graph.svg'
 
 const Reviews = () => {
     return (
-        <section className='flex justify-between px-10'>
+        <section className='flex justify-between mx-5'>
             {/* Positive Reviews */}
-            <div className='w-fit h-fit p-2 border-black border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
+            <div className='w-fit h-fit p-2 border-blue-600 border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
                 <div>
-                    <h2 classname='text-sm'>Positive Reviews</h2>
+                    <h2 className='text-sm text-blue-700'>Positive Reviews</h2>
                     <h3 className='text-green-500 text-3xl '>100</h3>
                 </div>
 
@@ -18,9 +18,9 @@ const Reviews = () => {
             </div>
 
             {/* Neutral Reviews */}
-            <div className='w-fit h-fit p-2 border-black border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
+            <div className='w-fit h-fit p-2 border-blue-600 border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
                 <div>
-                    <h2 classname='text-sm'>Positive Reviews</h2>
+                    <h2 className='text-sm text-blue-700'>Positive Reviews</h2>
                     <h3 className='text-yellow-600 text-3xl '>100</h3>
                 </div>
 
@@ -28,9 +28,9 @@ const Reviews = () => {
             </div>
 
             {/* Negative Reviews */}
-            <div className='w-fit h-fit p-2 border-black border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
+            <div className='w-fit h-fit p-2 border-blue-600 border-dotted border-2 flex justify-between gap-x-20 rounded-md py-3'>
                 <div>
-                    <h2 classname='text-sm'>Positive Reviews</h2>
+                    <h2 className='text-sm text-blue-700'>Positive Reviews</h2>
                     <h3 className='text-red-500 text-3xl '>100</h3>
                 </div>
 
