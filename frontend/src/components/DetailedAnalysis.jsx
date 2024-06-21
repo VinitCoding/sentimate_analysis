@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { MdInsertDriveFile } from "react-icons/md";;
 
-const DetailedAnalysis = () => {
+const DetailedAnalysis = ({folderName}) => {
   const inputRef = useRef()
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ const DetailedAnalysis = () => {
 
       {/*  */}
       <div className='flex justify-between gap-x-20 focus:border-none mx-5'>
-        <button className='w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800'>Analysis 1</button>
+        <button className='w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800'>{folderName}</button>
         <select name="" id="" className='w-[30%] text-lg border-[1.6px] border-blue-500 rounded-lg text-blue-800 px-2'> 
           <option value="" >Choose 1</option>
           <option value="" >Choose 2</option>
