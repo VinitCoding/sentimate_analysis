@@ -41,7 +41,7 @@ const DisplayAllData = () => {
         {/* Review div */}
         <div className=' p-6 rounded-2xl bg-[#ffffffc4]'>
           <Reviews pos_review={responseData.data.positive_counts} neu_review={responseData.data.neutral_counts} neg_review={responseData.data.negative_counts}/>
-          <Analysis pos_review={responseData.data.positive_counts} neu_review={responseData.data.neutral_counts} neg_review={responseData.data.negative_counts} image={responseData.data.image}/>
+          <Analysis pos_review={responseData.data.positive_counts} neu_review={responseData.data.neutral_counts} neg_review={responseData.data.negative_counts} image={responseData.data.img_str}/>
         </div>
 
         {/* Detailed Analysis div */}
