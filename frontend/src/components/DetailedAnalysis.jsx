@@ -17,11 +17,11 @@ const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
     setDetailedData(fileData[selectedValue])
   }
 
-  console.log(detailedData);
+  // console.log(detailedData);
   return (
     <div className="">
       {/*  */}
-      <div className="flex justify-between gap-x-20 focus:border-none mx-5">
+      <div className="flex justify-between mx-5 gap-x-20 focus:border-none">
         <p className="w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800">
           Folder Name: {folderName}
         </p>
@@ -42,10 +42,10 @@ const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
 
       {/*  */}
       <div className="mt-10 border-[1.6px] border-blue-400 border-dotted mx-5 rounded-lg">
-        <h3 className="text-blue-700 text-2xl p-3 font-bold">
+        <h3 className="p-3 text-2xl font-bold text-blue-700">
           Detailed Analysis
         </h3>
-        <pre className="p-3 text-blue-800 outfit text-lg" wrap='hard'>
+        <pre className="p-3 text-lg text-blue-800 outfit" wrap='hard'>
           {detailedData}
         </pre>
       </div>
