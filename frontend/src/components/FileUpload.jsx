@@ -32,7 +32,7 @@ const FileUpload = () => {
         setFile(inputFile);
         console.log("file got selected", inputFile);
       } else {
-        setError("Please upload an .zip files only");
+        setError('Please upload an ".zip" files only');
         setFile(null);
         console.log("Error while selecting file");
       }
@@ -53,12 +53,11 @@ const FileUpload = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        "http://localhost:8000/begin_analysis",
+        "http://localhost:8006/begin_analysis",
         formData
       );
       if (response.status) {
         setLoading(false);
-        console.log("Data from Api", response);
         navigate("/display_data", {
           state: { folderName: response.data.folder_name },
         });

@@ -1,34 +1,56 @@
-import React, { useRef } from 'react'
-import { MdInsertDriveFile } from "react-icons/md";;
+import React, { useState } from "react";
+import { MdInsertDriveFile } from "react-icons/md";
 
-const DetailedAnalysis = ({folderName}) => {
-  const inputRef = useRef()
+const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
 
-  const handleClick = () => {
-    inputRef.current.click()
+  // state for displaying detailed data
+  const [detailedData, setDetailedData] = useState('')
+
+  // state for selected file
+  const [selectedFile, setSelectedFile] = useState('')
+
+  // HandleDropDwon function 
+  const handleDropDown = (e) => {
+    const selectedValue = e.target.value
+    setSelectedFile(selectedValue)
+    console.log(`Data of selected file (${selectedValue}): ${fileData[selectedValue]}`);
+    setDetailedData(fileData[selectedValue])
   }
-  return (
-    <div className=''>
-      <input ref={inputRef} type='file' style={{display: 'none'}}></input>
 
+  console.log(detailedData);
+  return (
+    <div className="">
       {/*  */}
-      <div className='flex justify-between gap-x-20 focus:border-none mx-5'>
-        <button className='w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800'>{folderName}</button>
-        <select name="" id="" className='w-[30%] text-lg border-[1.6px] border-blue-500 rounded-lg text-blue-800 px-2'> 
-          <option value="" >Choose 1</option>
-          <option value="" >Choose 2</option>
-          <option value="" >Choose 3</option>
+      <div className="flex justify-between gap-x-20 focus:border-none mx-5">
+        <p className="w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800">
+          Folder Name: {folderName}
+        </p>
+        <select
+          onChange={handleDropDown}
+          className="w-[30%] text-lg border-[1.6px] border-blue-500 rounded-lg text-blue-800 px-2"
+        >
+          <option value='' selected disabled hidden>Select a file</option>
+          {fileList.map((item, index) => (
+            <option value={item} key={index} >{item}</option>
+          ))}
         </select>
-        <p onClick={handleClick} className='flex text-xl items-center gap-x-4 border-[1.6px] px-4 py-2 border-blue-400 mx-auto w-[30%] rounded-lg hover:cursor-pointer text-blue-800 '><MdInsertDriveFile />Choose file</p>
+        <p className="flex text-xl items-center gap-x-3 border-[1.6px] px-4 py-2 border-blue-400 mx-auto w-[30%] rounded-lg hover:cursor-pointer text-blue-800 ">
+          <MdInsertDriveFile />
+          Selected File: {selectedFile}
+        </p>
       </div>
 
       {/*  */}
-      <div className='mt-10 border-[1.6px] border-blue-400 border-dotted mx-5 rounded-lg'>
-        <h3 className='text-blue-700 text-2xl p-3 font-bold'>Detailed Analysis</h3>
-        <p className='p-3 text-blue-800'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis faucibus, nisi sit amet euismod iaculis, tellus velit bibendum massa, a dignissim felis diam nec sapien. Etiam lacinia egestas dui. Donec volutpat nisi sed maximus dignissim. Pellentesque dapibus porttitor massa. Duis nec blandit dolor, faucibus dignissim ligula. In ac tempor nibh. Fusce et tortor nisl. Nunc sit amet ligula vel tellus iaculis rutrum in nec arcu. Morbi id sollicitudin justo. Vivamus ut rhoncus arcu. Sed tincidunt porttitor nisi, eget feugiat orci. Mauris mollis dignissim erat, sed efficitur nibh. Nulla aliquam sapien nibh, in condimentum ligula semper at. Donec at nulla eu ex interdum dapibus ut sed quam. Cras dictum turpis et felis egestas, in dictum turpis luctus. Suspendisse dictum, nulla non placerat ultricies, enim eros vehicula lacus, eu tristique magna libero quis augue.</p>
+      <div className="mt-10 border-[1.6px] border-blue-400 border-dotted mx-5 rounded-lg">
+        <h3 className="text-blue-700 text-2xl p-3 font-bold">
+          Detailed Analysis
+        </h3>
+        <pre className="p-3 text-blue-800 outfit text-lg" wrap='hard'>
+          {detailedData}
+        </pre>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailedAnalysis
+export default DetailedAnalysis;
