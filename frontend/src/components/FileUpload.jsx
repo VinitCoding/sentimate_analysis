@@ -53,7 +53,7 @@ const FileUpload = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        "http://localhost:8006/begin_analysis",
+        "http://localhost:8000/begin_analysis",
         formData
       );
       if (response.status) {
@@ -75,7 +75,7 @@ const FileUpload = () => {
 
   return (
     <section
-      className="w-screen h-screen bg-cover bg-no-repeat bg-center notoSans flex  flex-col justify-center items-center "
+      className="flex flex-col items-center justify-center w-screen h-screen bg-center bg-no-repeat bg-cover notoSans "
       style={{ backgroundImage: `url(${bg_img})` }}
     >
       <Toaster />
@@ -91,7 +91,7 @@ const FileUpload = () => {
           onClick={handleFile}
           className="border-[2px] border-darkBlue border-dashed rounded-md justify-center cursor-pointer"
         >
-          <div className="items-center text-center flex flex-col py-10 px-16">
+          <div className="flex flex-col items-center px-16 py-10 text-center">
             <IoCloudUpload className="text-[70px] text-darkBlue" />
             <h2 className="text-[25px] my-4 text-darkBlue font-bold ">
               Click to upload file
@@ -103,10 +103,10 @@ const FileUpload = () => {
               Supported File types: <span className="font-semibold">.zip</span>
             </p>
             {error && (
-              <p className="text-red-500 text-lg text-center">{error}</p>
+              <p className="text-lg text-center text-red-500">{error}</p>
             )}
             {file && (
-              <p className="text-green-500 text-lg text-center">
+              <p className="text-lg text-center text-green-500">
                 <span className="font-semibold">File Name: </span>
                 {file.name}
               </p>
@@ -116,7 +116,7 @@ const FileUpload = () => {
 
         {/* Instruction for Div */}
         <div className="w-[470px]">
-          <ul className="list-disc leading-8">
+          <ul className="leading-8 list-disc">
             <li className="text-[20px] text-darkBlue font-semibold mb-4">
               Understand customer emotions and opinions in detail.
             </li>
@@ -131,7 +131,7 @@ const FileUpload = () => {
             </li>
           </ul>
           <button
-            className="w-full bg-darkBlue text-white px-2 py-2 border-none rounded-md mt-3 hover:bg-gray-400 hover:text-darkBlue transition-all duration-75 ease-in-out font-semibold"
+            className="w-full px-2 py-2 mt-3 font-semibold text-white transition-all duration-75 ease-in-out border-none rounded-md bg-darkBlue hover:bg-gray-400 hover:text-darkBlue"
             onClick={handleApiData}
           >
             Send
@@ -140,7 +140,7 @@ const FileUpload = () => {
 
         {loading && (
           <div className="fullloader">
-            <div className="flex flex-col justify-center items-center absolute w-full h-full top-0 ">
+            <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full ">
               {/* <DNA
                                 visible={true}
                                 height="200"
