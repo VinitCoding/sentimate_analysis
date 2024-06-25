@@ -85,7 +85,7 @@ const FileUpload = () => {
         style={{ display: "none" }}
         onChange={fileValidation}
       />
-      <div className="flex gap-x-20 items-start bg-[#ffffffc4] rounded-lg p-24 mt-20">
+      <div className="flex xl:gap-x-20 lg:gap-x-[72px] items-start bg-[#ffffffc4] rounded-lg xl:p-24 lg:p-[89px] xl:mt-20 lg:mt-[72px]">
         {/* File Upload Div */}
         <div
           onClick={handleFile}

@@ -9,7 +9,7 @@ const App = () => {
   return (
     <section>
       {/* Navbar */}
-      <div className='fixed w-full bg-white px-6 py-4'>
+      <div className='fixed bg-white xl:w-full lg:w-full xl:px-6 lg:px-4 xl:py-4 lg:py-2'>
         <Navbar />
       </div>
 
