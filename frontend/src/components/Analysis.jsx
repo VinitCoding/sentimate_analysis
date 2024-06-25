@@ -18,6 +18,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
     labels: ['Positive', 'Neutral', 'Negative'],
     datasets: [
       {
+        label: 'Reviews ',
         data: [pos_review, neu_review, neg_review],
         backgroundColor: ['#2E8B57', '#FFD700', '#E2252B'],
         hoverBackgroundColor: ['#53D28A', '#FFE456', '#FF6A6E'],
@@ -35,7 +36,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
     setOpenChart(!openChart);
   };
   return (
-    <section className="border-blue-600 border-2 border-dotted py-8 flex justify-center gap-x-20 mx-5 rounded-md mt-12">
+    <section className="flex justify-center py-8 mx-5 mt-12 border-2 border-blue-600 border-dotted rounded-md gap-x-20">
       {/* Overall sentimate distribution */}
       <button
         className="border-blue-700 border-[2px] px-4 py-2 rounded-md w-full mx-8 text-lg font-semibold text-blue-800"
@@ -53,17 +54,17 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
       {openImage && (
         <Dialog
           open={openImage}
-          className="flex justify-center flex-col items-center "
+          className="flex flex-col items-center justify-center "
         >
-          <DialogHeader className="w-full flex justify-between border-b-2 border-blue-gray-200">
+          <DialogHeader className="flex justify-between w-full border-b-2 border-blue-gray-200">
             <h2>Word Cloud</h2>
             <IoMdClose
               onClick={handleImage}
-              className="hover:bg-red-500 hover:text-white cursor-pointer transition-all ease-in-out duration-75 rounded-md"
+              className="transition-all duration-75 ease-in-out rounded-md cursor-pointer hover:bg-red-500 hover:text-white"
               title="Close"
             />
           </DialogHeader>
-          <DialogBody className="w-full flex justify-center ">
+          <DialogBody className="flex justify-center w-full ">
             <img src={`data:image/png;base64,${image}`} className="w-full " />
           </DialogBody>
         </Dialog>
@@ -72,12 +73,12 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
       {openChart && (
         <Dialog
           open={openChart}
-          className="flex justify-center flex-col items-center "
+          className="flex flex-col items-center justify-center "
         >
-          <DialogHeader className="w-full flex justify-between border-b-2 border-blue-gray-200">
+          <DialogHeader className="flex justify-between w-full border-b-2 border-blue-gray-200">
             <h2>Overall Sentiment Distribution</h2>
             <IoMdClose onClick={handleChart}
-              className="hover:bg-red-500 hover:text-white cursor-pointer transition-all ease-in-out duration-75 rounded-md"
+              className="transition-all duration-75 ease-in-out rounded-md cursor-pointer hover:bg-red-500 hover:text-white"
               title="Close"/>
           </DialogHeader>
           <DialogBody className="w-[60%] flex justify-center">

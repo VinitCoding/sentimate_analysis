@@ -53,7 +53,7 @@ const FileUpload = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        "http://localhost:8006/begin_analysis",
+        "http://localhost:8030/begin_analysis",
         formData
       );
       if (response.status) {
@@ -75,7 +75,7 @@ const FileUpload = () => {
 
   return (
     <section
-      className="flex flex-col items-center justify-center w-screen h-screen bg-center bg-no-repeat bg-cover notoSans "
+      className="flex flex-col items-center justify-center w-screen h-screen overflow-x-hidden bg-center bg-no-repeat bg-cover notoSans"
       style={{ backgroundImage: `url(${bg_img})` }}
     >
       <Toaster />
@@ -85,28 +85,30 @@ const FileUpload = () => {
         style={{ display: "none" }}
         onChange={fileValidation}
       />
-      <div className="flex gap-x-20 items-start bg-[#ffffffc4] rounded-lg p-24 mt-20">
+      <div className="flex gap-x-20 items-start bg-[#ffffffc4] md:px-[50px] lg:px-11 md:py-14 lg:py-10 rounded-lg md:mt-[120px] lg:mt-[130px]">
         {/* File Upload Div */}
         <div
           onClick={handleFile}
           className="border-[2px] border-darkBlue border-dashed rounded-md justify-center cursor-pointer"
         >
-          <div className="flex flex-col items-center px-16 py-10 text-center">
-            <IoCloudUpload className="text-[70px] text-darkBlue" />
-            <h2 className="text-[25px] my-4 text-darkBlue font-bold ">
+          <div className="flex flex-col items-center text-center md:px-24 lg:px-20 lg:py-[46px] md:py-[77px] ">
+            <IoCloudUpload className="xl:text-[100px] lg:text-[60px] text-darkBlue" />
+            <h2 className="md:text-[32px] lg:text-[28px] my-4 text-darkBlue font-bold ">
               Click to upload file
             </h2>
-            <p className="my-2 text-[18px] text-darkBlue">
+            <p className="my-2 md:text-[22px] lg:text-[18px] text-darkBlue">
               Max Size: <span className="font-semibold">50MB</span>
             </p>
-            <p className="my-2 text-[18px] text-darkBlue">
+            <p className="my-2 md:text-[22px] lg:text-[18px] text-darkBlue">
               Supported File types: <span className="font-semibold">.zip</span>
             </p>
             {error && (
-              <p className="text-lg text-center text-red-500">{error}</p>
+              <p className="md:text-[22px] lg:text-[18px] text-center text-red-500 md:mb-[-45px] lg:mb-[-30px] md:mt-3 lg:mt-2">
+                {error}
+              </p>
             )}
             {file && (
-              <p className="text-lg text-center text-green-500">
+              <p className="md:text-[22px] lg:text-[18px] text-center text-green-500 md:mb-[-45px] lg:mb-[-30px] md:mt-3 lg:mt-2">
                 <span className="font-semibold">File Name: </span>
                 {file.name}
               </p>
@@ -116,17 +118,17 @@ const FileUpload = () => {
 
         {/* Instruction for Div */}
         <div className="w-[470px]">
-          <ul className="leading-8 list-disc">
-            <li className="text-[20px] text-darkBlue font-semibold mb-4">
+          <ul className="list-disc md:leading-[40px] lg:leading-10">
+            <li className="md:text-[24px] lg:text-[20px] text-darkBlue font-semibold mb-4">
               Understand customer emotions and opinions in detail.
             </li>
-            <li className="text-[20px] text-darkBlue font-semibold my-4">
+            <li className="md:text-[22px] lg:text-[20px] text-darkBlue font-semibold my-4">
               Extract key trends and patterns from reviews.
             </li>
-            <li className="text-[20px] text-darkBlue font-semibold my-4">
+            <li className="md:text-[22px] lg:text-[20px] text-darkBlue font-semibold my-4">
               Turn feedback into effective business decisions.
             </li>
-            <li className="text-[20px] text-darkBlue font-semibold my-4">
+            <li className="md:text-[22px] lg:text-[20px] text-darkBlue font-semibold my-4">
               Seamlessly incorporate insights into your workflow.
             </li>
           </ul>
@@ -140,7 +142,7 @@ const FileUpload = () => {
 
         {loading && (
           <div className="fullloader">
-            <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full ">
+            <div className="absolute md:left-[47%] lg:left-[46%] flex flex-col w-full h-full md:top-[38%] lg:top-[36%] md:-mb-3 ">
               {/* <DNA
                                 visible={true}
                                 height="200"
@@ -166,14 +168,18 @@ const FileUpload = () => {
                   "#FF540B",
                 ]}
               />
-              <h2 className="absolute top-[60%] left-[45%] text-3xl font-semibold text-blue-900 animate-pulse">
+              <h2 className="absolute md:top-[14%] lg:top-[19%] md:left-[-1%] lg:left-[1%]  md:text-[40px] lg:text-[25px] font-semibold text-blue-900 animate-pulse">
                 Analyzing...
               </h2>
             </div>
           </div>
         )}
       </div>
-      <img src={powerBy_img} alt="powered_by_image" className="xl:mt-12 lg:mt-10 w-18 " />
+      <img
+        src={powerBy_img}
+        alt="powered_by_image"
+        className="w-[200px] md:mt-12 lg:mt-10 mb-10 "
+      />
     </section>
   );
 };

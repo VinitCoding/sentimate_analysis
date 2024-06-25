@@ -7,6 +7,11 @@ module.exports = withMT({
     extend: {
       colors: {
         'darkBlue': '#1D5D9B'
+      },
+      screens: {
+        'lg': {'max': '1834px'},
+        'xl': {'max': '1870px'}
+
       }
     },
   },
