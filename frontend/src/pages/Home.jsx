@@ -5,17 +5,17 @@ import DetailedAnalysis from '../components/DetailedAnalysis'
 
 const Home = () => {
   return (
-    <section className='w-screen h-screen overflow-y-scroll bg-center bg-cover xl:px-8 lg:px-7 lg:py-10 xl:py-9 outfit' style={{ backgroundImage: `url(${bg_img})` }}>
+    <section className='w-screen h-screen px-8 py-10 overflow-y-scroll bg-center bg-cover outfit' style={{ backgroundImage: `url(${bg_img})` }}>
 
       <div className=''>
         {/* Review div */}
-        <div className=' xl:p-6 lg:p-5 rounded-2xl bg-[#ffffffc4]'>
+        <div className=' p-6 rounded-2xl bg-[#ffffffc4]'>
           <Reviews />
           <Analysis />
         </div>
 
         {/* Detailed Analysis div */}
-        <div className=' xl:p-6 lg:p-5 rounded-2xl bg-[#ffffffc4] xl:mt-8 lg:mt-7'>
+        <div className=' p-6 rounded-2xl bg-[#ffffffc4] mt-8'>
           <DetailedAnalysis />
         </div>
       </div>

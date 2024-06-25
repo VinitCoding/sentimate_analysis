@@ -85,7 +85,7 @@ const FileUpload = () => {
         style={{ display: "none" }}
         onChange={fileValidation}
       />
-      <div className="flex xl:gap-x-20 lg:gap-x-[72px] items-start bg-[#ffffffc4] rounded-lg xl:p-24 lg:p-[89px] xl:mt-20 lg:mt-[72px]">
+      <div className="flex gap-x-20 items-start bg-[#ffffffc4] rounded-lg p-24 mt-20">
         {/* File Upload Div */}
         <div
           onClick={handleFile}
@@ -173,7 +173,7 @@ const FileUpload = () => {
           </div>
         )}
       </div>
-      <img src={powerBy_img} alt="powered_by_image" className="mt-12 w-18 " />
+      <img src={powerBy_img} alt="powered_by_image" className="xl:mt-12 lg:mt-10 w-18 " />
     </section>
   );
 };
