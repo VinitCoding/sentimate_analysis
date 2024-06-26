@@ -18,7 +18,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
     labels: ['Positive', 'Neutral', 'Negative'],
     datasets: [
       {
-        label: 'Reviews ',
+        label: 'Reviews in "%" ',
         data: [pos_review, neu_review, neg_review],
         backgroundColor: ['#2E8B57', '#FFD700', '#E2252B'],
         hoverBackgroundColor: ['#53D28A', '#FFE456', '#FF6A6E'],
