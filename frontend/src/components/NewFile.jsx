@@ -1,5 +1,5 @@
 import React from 'react'
-import { AiOutlineFileAdd } from "react-icons/ai";
+import { IoHome } from "react-icons/io5";
 import { Tooltip } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
 
@@ -10,9 +10,9 @@ const NewFile = () => {
       }
   return (
     <div className="relative">
-        <Tooltip content="Add a new file" placement="left">
+        <Tooltip content="Home Page" placement="left">
           <button className="bg-[#2D2C82] rounded-full p-2 absolute right-[70px]" onClick={handleNewFile}>
-            <AiOutlineFileAdd className="text-xl text-white" />
+            <IoHome className="text-[18px] text-white" />
           </button>
         </Tooltip>
     </div>
