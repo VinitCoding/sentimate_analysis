@@ -3,14 +3,15 @@ import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { IoMdClose } from "react-icons/io";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import chistats from '../assets/chistat_logo.png'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
   // State for handling Positive Review word cloud modal
   const [openPositiveImage, setOpenPositiveImage] = useState(false);
-  
-  // State for handling Positive Review word cloud modal
+
+  // State for handling Negative Review word cloud modal
   const [openNegativeImage, setOpenNegativeImage] = useState(false);
 
   // State for handling charts
@@ -34,15 +35,11 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
   const handlePositiveImage = () => {
     setOpenPositiveImage(!openPositiveImage);
   };
-
-  const handleNegativeImage = () => {
-    setOpenNegativeImage(!openPositiveImage);
-  };
-
-  
-
   const handleChart = () => {
     setOpenChart(!openChart);
+  };
+  const handleNegativeImage = () => {
+    setOpenNegativeImage(!openNegativeImage);
   };
   return (
     <section className="flex flex-col items-center justify-center py-8 mx-5 mt-12 border-2 border-blue-600 border-dotted rounded-md gap-x-20">
@@ -54,12 +51,12 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
         >
           Positive Review Word Cloud
         </button>
-      <button
-        className="border-blue-700 border-[2px] px-4 py-2 rounded-md mx-5 text-lg font-semibold text-blue-800 w-fit"
-        onClick={handleChart}
-      >
-        Overall Sentiment Distribution
-      </button>
+        <button
+          className="border-blue-700 border-[2px] px-4 py-2 rounded-md mx-5 text-lg font-semibold text-blue-800 w-fit"
+          onClick={handleChart}
+        >
+          Overall Sentiment Distribution
+        </button>
         <button
           className="border-blue-700 border-[2px] px-4 py-2 rounded-md w-fit mx-5 text-lg font-semibold text-blue-800"
           onClick={handleNegativeImage}
@@ -68,7 +65,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
         </button>
       </div>
 
-      {openPositiveImage && (
+      {openPositiveImage ? (
         <Dialog
           open={openPositiveImage}
           className="flex flex-col items-center justify-center "
@@ -76,7 +73,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
           <DialogHeader className="flex justify-between w-full border-b-2 border-blue-gray-200">
             <h2>Positive Review Word Cloud</h2>
             <IoMdClose
-              onClick={handleImage}
+              onClick={handlePositiveImage}
               className="transition-all duration-75 ease-in-out rounded-md cursor-pointer hover:bg-red-500 hover:text-white"
               title="Close"
             />
@@ -85,7 +82,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
             <img src={`data:image/png;base64,${image}`} className="w-full " />
           </DialogBody>
         </Dialog>
-      )}
+      ): (null)}
 
       {openChart && (
         <Dialog
@@ -105,6 +102,25 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
           </DialogBody>
         </Dialog>
       )}
+
+      {openNegativeImage ? (
+        <Dialog
+          open={openNegativeImage}
+          className="flex flex-col items-center justify-center "
+        >
+          <DialogHeader className="flex justify-between w-full border-b-2 border-blue-gray-200">
+            <h2>Negative Review Word Cloud</h2>
+            <IoMdClose
+              onClick={handleNegativeImage}
+              className="transition-all duration-75 ease-in-out rounded-md cursor-pointer hover:bg-red-500 hover:text-white"
+              title="Close"
+            />
+          </DialogHeader>
+          <DialogBody className="flex justify-center w-full ">
+          <img src={`data:image/png;base64,${image}`} className="w-full " />
+          </DialogBody>
+        </Dialog>
+      ): (null)}
     </section>
   );
 };

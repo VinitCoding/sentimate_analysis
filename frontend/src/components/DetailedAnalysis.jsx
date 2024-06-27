@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { MdInsertDriveFile } from "react-icons/md";
 import ReadMoreArea from "@foxeian/react-read-more";
 
-const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
+const DetailedAnalysis = ({ folderName, fileList, fileData, originalData }) => {
+  
+  // state for selected file
+  const [selectedFile, setSelectedFile] = useState("");
+  
   // state for displaying detailed data
   const [detailedData, setDetailedData] = useState("");
 
-  // state for selected file
-  const [selectedFile, setSelectedFile] = useState("");
-
-  // State for showing less or more
-  const [isOpen, setIsOpen] = useState(false);
-  const [showReadMoreButton, setShowReadMoreButton] = useState(false);
+  // state for displaying original data
+  const [rawData, setRawData] = useState("")
 
   // HandleDropDwon function
   const handleDropDown = (e) => {
@@ -21,6 +21,7 @@ const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
       `Data of selected file (${selectedValue}): ${fileData[selectedValue]}`
     );
     setDetailedData(fileData[selectedValue]);
+    setRawData(originalData[selectedValue])
   };
 
   // console.log(detailedData);
@@ -68,31 +69,9 @@ const DetailedAnalysis = ({ folderName, fileList, fileData }) => {
                 marginLeft: "5px",
               }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              inventore, culpa accusantium fuga cum quia sunt. Nulla recusandae
-              maxime aliquid praesentium, exercitationem facere amet commodi
-              porro repellat? Illum possimus consequatur quis reiciendis,
-              tempora qui ea sint error iure similique magni impedit nam modi
-              dolorum neque esse beatae accusamus, sit, est totam rem
-              laboriosam? Provident rerum voluptatum ducimus harum quam mollitia
-              eum similique beatae accusantium. Repellendus quas blanditiis
-              voluptatibus in commodi voluptatem possimus dolores tenetur
-              voluptatum ea autem ullam dicta cumque deserunt et inventore eos
-              dolore, reiciendis praesentium quisquam excepturi. Deserunt
-              commodi officiis obcaecati recusandae hic, esse enim! Architecto
-              veniam, quidem deleniti pariatur nam debitis excepturi mollitia
-              ratione ad laudantium reprehenderit vel ducimus eius dolorum ut
-              illum, quod sequi, esse placeat quas! Doloremque distinctio autem
-              ullam quibusdam harum rerum officiis, minima tempore quos eveniet
-              placeat pariatur optio id numquam blanditiis nesciunt error iusto!
-              Laudantium adipisci consectetur molestiae, sequi sit consequatur
-              modi, iste voluptates, provident soluta aperiam doloremque saepe
-              blanditiis id ratione obcaecati fugit iure rem magni qui.
-              Cupiditate et accusamus iure, velit at fugiat inventore, vitae
-              debitis adipisci veniam eveniet. Ratione possimus reprehenderit
-              sed explicabo ipsa quidem esse similique exercitationem et aliquam
-              veritatis asperiores, illo fugiat voluptas expedita nesciunt ipsam
-              repudiandae?
+              {
+                rawData
+              }
             </ReadMoreArea>
           </p>
         </div>

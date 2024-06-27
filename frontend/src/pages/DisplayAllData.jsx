@@ -17,7 +17,7 @@ const DisplayAllData = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post("http://localhost:8025/fetch_data", {
+        const response = await axios.post("http://localhost:8026/fetch_data", {
           folder_name: folderName,
         });
         setResponseData(response.data);
@@ -68,7 +68,8 @@ const DisplayAllData = () => {
           <DetailedAnalysis
             folderName={folderName}
             fileList={responseData.data.file_list}
-            fileData={responseData.data.data}
+            fileData={responseData.data.output_data}
+            originalData={responseData.data.original_review}
           />
         </div>
       </div>
