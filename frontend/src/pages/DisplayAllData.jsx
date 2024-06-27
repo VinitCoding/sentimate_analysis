@@ -17,7 +17,7 @@ const DisplayAllData = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post("http://localhost:8026/fetch_data", {
+        const response = await axios.post("http://localhost:8025/fetch_data", {
           folder_name: folderName,
         });
         setResponseData(response.data);

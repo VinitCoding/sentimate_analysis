@@ -53,7 +53,7 @@ const FileUpload = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        "http://localhost:8026/begin_analysis",
+        "http://localhost:8025/begin_analysis",
         formData
       );
       if (response.status) {
