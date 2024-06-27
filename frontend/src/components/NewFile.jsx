@@ -11,7 +11,7 @@ const NewFile = () => {
   return (
     <div className="relative">
         <Tooltip content="Home Page" placement="left">
-          <button className="bg-[#2D2C82] rounded-full p-2 absolute right-[70px]" onClick={handleNewFile}>
+          <button className="bg-[#2D2C82] rounded-full p-2 absolute md:right-[50px] hover:animate-pulse md:transition-all md:duration-75 lg:right-[70px]" onClick={handleNewFile}>
             <IoHome className="text-[18px] text-white" />
           </button>
         </Tooltip>
