@@ -59,7 +59,8 @@ const DisplayAllData = () => {
             pos_review={responseData.data.positive_counts}
             neu_review={responseData.data.neutral_counts}
             neg_review={responseData.data.negative_counts}
-            image={responseData.data.image}
+            positive_wc={responseData.data.positive_wc}
+            negative_wc={responseData.data.negative_wc}
           />
         </div>
 
@@ -70,6 +71,7 @@ const DisplayAllData = () => {
             fileList={responseData.data.file_list}
             fileData={responseData.data.output_data}
             originalData={responseData.data.original_review}
+            
           />
         </div>
       </div>

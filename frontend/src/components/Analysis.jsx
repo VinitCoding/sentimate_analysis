@@ -3,11 +3,10 @@ import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
 import { IoMdClose } from "react-icons/io";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import chistats from '../assets/chistat_logo.png'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
+const Analysis = ({ pos_review, neu_review, neg_review,  positive_wc, negative_wc }) => {
   // State for handling Positive Review word cloud modal
   const [openPositiveImage, setOpenPositiveImage] = useState(false);
 
@@ -43,6 +42,7 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
   };
   return (
     <section className="flex flex-col items-center justify-center py-8 mx-5 mt-12 border-2 border-blue-600 border-dotted rounded-md gap-x-20">
+      
       {/* Overall sentimate distribution */}
       <div className="flex justify-between w-full">
         <button
@@ -65,7 +65,8 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
         </button>
       </div>
 
-      {openPositiveImage ? (
+      {/* Positive word cloud Pop up */}
+      {openPositiveImage && (
         <Dialog
           open={openPositiveImage}
           className="flex flex-col items-center justify-center "
@@ -79,11 +80,12 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
             />
           </DialogHeader>
           <DialogBody className="flex justify-center w-full ">
-            <img src={`data:image/png;base64,${image}`} className="w-full " />
+            <img src={`data:image/png;base64,${positive_wc}`} className="w-full " />
           </DialogBody>
         </Dialog>
-      ): (null)}
+      )}
 
+      {/* Pie Chart pop up*/}
       {openChart && (
         <Dialog
           open={openChart}
@@ -103,7 +105,8 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
         </Dialog>
       )}
 
-      {openNegativeImage ? (
+      {/* Negative word cloud pop up */}
+      {openNegativeImage && (
         <Dialog
           open={openNegativeImage}
           className="flex flex-col items-center justify-center "
@@ -117,10 +120,10 @@ const Analysis = ({ image, pos_review, neu_review, neg_review }) => {
             />
           </DialogHeader>
           <DialogBody className="flex justify-center w-full ">
-          <img src={`data:image/png;base64,${image}`} className="w-full " />
+          <img src={`data:image/png;base64,${negative_wc}`} className="w-full " />
           </DialogBody>
         </Dialog>
-      ): (null)}
+      )}
     </section>
   );
 };
