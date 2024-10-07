@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { DNA, Vortex } from "react-loader-spinner";
 import { ImUser } from "react-icons/im";
+import footer_logo from "../assets/footer_logo.svg";
 import {
   Popover,
   PopoverContent,
@@ -18,6 +19,7 @@ import { CgSoftwareUpload } from "react-icons/cg";
 import { MdOutlineLogout } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { Tooltip } from "chart.js";
+
 // import { Spinner } from '@material-tailwind/react'
 
 const FileUpload = () => {
@@ -37,6 +39,7 @@ const FileUpload = () => {
     const inputFile = e.target.files[0];
     if (inputFile) {
       const fileType = inputFile.name.split(".").pop().toLowerCase();
+      console.log(fileType);
       if (fileType === "zip") {
         setError("");
         setFile(inputFile);
@@ -68,7 +71,13 @@ const FileUpload = () => {
       );
       if (response.status) {
         setLoading(false);
-        navigate("/product_selection");
+        // console.log(response);
+        // const file_name = formData.name.split('.zip').pop()
+        // console.log(file_name);
+
+        console.log(formData);
+        navigate("/display_data");
+
         // , {state: { folderName: response.data.folder_name }}
       }
     } catch (error) {
@@ -82,6 +91,10 @@ const FileUpload = () => {
     inputRef.current.click();
   };
 
+  // Function for getting previous session
+  const handlePrevious = () => {
+    navigate("/display_data");
+  }
   return (
     <section
       className="flex flex-col items-center justify-center w-screen h-screen overflow-x-hidden bg-center bg-no-repeat bg-cover notoSans"
@@ -96,7 +109,7 @@ const FileUpload = () => {
         onChange={fileValidation}
       />
 
-      <div className="fixed top-20 right-20">
+      {/* <div className="fixed top-20 right-20">
         <Popover placement="bottom-end">
           <PopoverHandler>
             <button className="p-2 bg-[#ffffffc4] rounded-full">
@@ -112,10 +125,10 @@ const FileUpload = () => {
             </Link>
           </PopoverContent>
         </Popover>
-      </div>
+      </div> */}
 
       {/* Navigation */}
-      <div className="flex gap-x-20 items-start bg-[#ffffffc4] md:px-[50px] lg:px-11 md:py-14 lg:py-10 rounded-lg md:mt-[120px] lg:mt-[140px]">
+      <div className="flex gap-x-20 items-start bg-[#ffffffda] md:px-[50px] lg:px-11 md:py-14 lg:py-10 rounded-lg md:mt-[120px] lg:mt-[7%]">
         {/* File Upload Div */}
         <div
           onClick={handleFile}
@@ -162,12 +175,18 @@ const FileUpload = () => {
               Seamlessly incorporate insights into your workflow.
             </li>
           </ul>
-          <button
-            className="w-full px-2 py-2 mt-3 font-semibold text-white transition-all duration-75 ease-in-out border-none rounded-md bg-darkBlue hover:bg-gray-400 hover:text-darkBlue"
-            onClick={handleApiData}
-          >
-            Send
-          </button>
+          <div className="flex gap-x-10">
+            <button
+              className="w-[80%] px-2 py-2 mt-3 font-semibold text-white transition-all duration-75 ease-in-out border-none rounded-md  bg-darkBlue hover:bg-gray-400 hover:text-darkBlue"
+              onClick={handleApiData}
+            >
+              Analyze
+            </button>
+
+            <button className="w-full px-2 py-2 mt-3 font-semibold transition-all duration-75 ease-in-out bg-white border-2 rounded-md text-darkBlue hover:bg-gray-400 hover:text-darkBlue border-darkBlue" onClick={handlePrevious}>
+              See previous session
+            </button>
+          </div>
         </div>
 
         {loading && (
@@ -197,9 +216,9 @@ const FileUpload = () => {
         )}
       </div>
       <img
-        src={powerBy_img}
-        alt="powered_by_image"
-        className="w-[200px] md:mt-12 lg:mt-10 mb-10 "
+        src={footer_logo}
+        alt=""
+        className="md:w-[210px] lg:w-[14%] lg:pt-16"
       />
     </section>
   );

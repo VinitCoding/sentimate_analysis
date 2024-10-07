@@ -30,7 +30,7 @@ const DetailedAnalysis = ({ folderName, fileList, fileData, originalData }) => {
       {/*  */}
       <div className="flex justify-between mx-5 gap-x-20 focus:border-none">
         <p className="w-[30%] px-3 py-2 border-[2px] border-blue-500 border-dotted text-lg rounded-lg text-blue-800 hover:cursor-default">
-          <span className="font-medium">Folder Name:</span> {folderName}
+          <span className="font-medium">Selected Product:</span> {folderName}
         </p>
         <select
           onChange={handleDropDown}

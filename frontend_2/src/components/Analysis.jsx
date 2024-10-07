@@ -12,6 +12,8 @@ import StackedBarChart from "../Chart/StackedBarChart";
 import PieChart from "../Chart/PieChart";
 import BubbleChart from "../Chart/BubbleChart";
 import HorizontalBarChart from "../Chart/HorizontalBarChart";
+import Histogram from "../Chart/Histogram";
+import Distplot from "../Chart/Distplot"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -23,11 +25,19 @@ const Analysis = ({
   sen_bubble_size,
   sen_bubble_title,
   sen_bubble_x_axis,
-  ratings_bubble_x,
-  ratings_bubble_y,
-  ratings_bubble_size,
-  ratings_bubble_title,
-  ratings_bubble_x_axis,
+  // ratings_bubble_x,
+  // ratings_bubble_y,
+  // ratings_bubble_size,
+  // ratings_bubble_title,
+  // ratings_bubble_x_axis,
+  ratings_histogram_x,
+  ratings_histogram_title,
+  ratings_histogram_x_axis,
+  ratings_median_x, 
+  rating_line,
+  // rating_distplot,
+  rating_distplot_data,
+  rating_distplot_layout,
   h_bar,
   aspect_bubble_x,
   aspect_bubble_y,
@@ -36,7 +46,9 @@ const Analysis = ({
   aspect_bubble_x_axis,
   positive_counts,
   negative_counts,
-  neutral_counts
+  neutral_counts,
+  bubble_text,
+  bubble_color,
 }) => {
   console.log(
     "sen_bubble values : ",
@@ -46,11 +58,10 @@ const Analysis = ({
     sen_bubble_title
   );
   console.log(
-    "ratings_bubble values : ",
-    ratings_bubble_x,
-    ratings_bubble_y,
-    ratings_bubble_size,
-    ratings_bubble_title
+    "ratings_histogram values : ",
+    ratings_histogram_x,
+    ratings_histogram_title,
+    ratings_histogram_x_axis,
   );
   // State for handling Positive Review word cloud modal
   const [openPositiveImage, setOpenPositiveImage] = useState(false);
@@ -86,7 +97,7 @@ const Analysis = ({
     setOpenNegativeImage(!openNegativeImage);
   };
   return (
-    <section className="flex flex-col items-center justify-center pt-6 pb-8 mx-5 mt-12 border-2 border-blue-600 border-dotted rounded-md gap-x-20">
+    <section className="">
       {/* <div>
         <h2></h2>
       <select name="" id="">
@@ -118,61 +129,93 @@ const Analysis = ({
         </button>
       </div> */}
 
-      <div className="flex justify-start w-full">
-      <h2 className="ml-12 text-2xl font-semibold text-blue-700">Visualization of Analysis</h2>
-      </div>
-      
-      {/* Div 1 */}
-      <div className="flex justify-center p-3 pb-3 mb-2 bg-gray-100 border border-gray-100 shadow-lg gap-x-3 md:mt-8 lg:mt-4">
-        <StackedBarChart plotly_data={plotly_data} />
-        <PieChart
-          sentiment_counts={[positive_counts, negative_counts, neutral_counts]}
-          sentiment_titles={['Positive','Negative','Neutral']}
-        />
-      </div>
-
-      {/* Div 2 */}
-      <div className="flex justify-center p-3 mb-2 bg-gray-100 border border-gray-100 shadow-lg gap-x-3 md:mt-8 lg:mt-4">
-        <BubbleChart
-          bubble_x={sen_bubble_x}
-          bubble_y={sen_bubble_y}
-          bubble_size={sen_bubble_size}
-          bubble_title={sen_bubble_title}
-          bubble_x_axis={sen_bubble_x_axis}
-          bubble_y_axis={"Counts"}
-          bubble_height={400}
-          bubble_width={625}
-          bubble_tick_size={12}
-        />
-        <BubbleChart
-          bubble_x={ratings_bubble_x}
-          bubble_y={ratings_bubble_y}
-          bubble_size={ratings_bubble_size}
-          bubble_title={ratings_bubble_title}
-          bubble_x_axis={ratings_bubble_x_axis}
-          bubble_y_axis={"Counts"}
-          bubble_height={400}
-          bubble_width={625}
-          bubble_tick_size={12}
-        />
-      </div>
-
-      {/* Div 3 */}
-      <div className="flex flex-col justify-center p-3 bg-gray-100 border border-gray-100 shadow-lg gap-y-3 md:mt-8 lg:mt-4">
-        <h2 className="w-full py-2 mt-2 text-2xl text-[#444444] text-center bg-white">
-          {aspect_bubble_title}
+      <div className="flex justify-start w-full mt-3">
+        <h2 className="ml-4 text-2xl font-extrabold text-blue-700 ">
+          Visualization of Analysis
         </h2>
-        <div className="flex gap-x-3">
-          <BubbleChart
-            bubble_x={aspect_bubble_x}
-            bubble_y={aspect_bubble_y}
-            bubble_size={aspect_bubble_size}
-            bubble_x_axis={aspect_bubble_x_axis}
+      </div>
+
+      <div className="flex flex-col items-center justify-center pt-3 pb-8 mx-5 mt-4 mb-5 border-2 border-blue-600 border-dotted rounded-md gap-x-20">
+        {/* Div 1 */}
+        <div className="flex justify-center p-3 pb-3 mb-2 bg-gray-100 border border-gray-100 shadow-lg gap-x-3 md:mt-8 lg:mt-4">
+          <StackedBarChart plotly_data={plotly_data} />
+          <PieChart
+            sentiment_counts={[
+              positive_counts,
+              negative_counts,
+              neutral_counts,
+            ]}
+            sentiment_titles={["Positive", "Negative", "Neutral"]}
+            sentiment_colors={["#90ee90", "#ff0000", "#ffd700"]}
+          />
+        </div>
+
+        {/* Div 3 */}
+        <div className="flex flex-col justify-center p-3 bg-gray-100 border border-gray-100 shadow-lg gap-y-3 md:mt-8 lg:mt-4">
+          <h2 className="w-full py-2 mt-2 text-2xl text-[#444444] text-center bg-white">
+            {aspect_bubble_title}
+          </h2>
+          <div className="flex gap-x-3">
+            <BubbleChart
+              bubble_x={aspect_bubble_x}
+              bubble_y={aspect_bubble_y}
+              // 3.0 > green, 3.0 = yellow, 3.0 < red
+              bubble_size={aspect_bubble_size}
+              color={bubble_color}
+              bubble_x_axis={aspect_bubble_x_axis}
+              bubble_height={400}
+              bubble_width={600}
+              bubble_tick_size={12}
+              bubble_text={bubble_text}
+            />
+            <HorizontalBarChart h_bar={h_bar} />
+          </div>
+        </div>
+        {/* Div 2 */}
+        <div className="flex justify-center p-3 mb-2 bg-gray-100 border border-gray-100 shadow-lg gap-x-3 md:mt-8 lg:mt-4">
+          {/* <BubbleChart
+            bubble_x={sen_bubble_x}
+            bubble_y={sen_bubble_y}
+            bubble_size={sen_bubble_size}
+            bubble_title={sen_bubble_title}
+            bubble_x_axis={sen_bubble_x_axis}
+            bubble_y_axis={"Counts"}
             bubble_height={400}
             bubble_width={625}
             bubble_tick_size={12}
+          /> */}
+          {/* <BubbleChart
+            bubble_x={ratings_bubble_x}
+            bubble_y={ratings_bubble_y}
+            bubble_size={ratings_bubble_size}
+            bubble_title={ratings_bubble_title}
+            bubble_x_axis={ratings_bubble_x_axis}
+            bubble_y_axis={"Counts"}
+            bubble_height={400}
+            bubble_width={1260}
+            bubble_tick_size={12}
+          /> */}
+
+          {/* <Histogram
+            rating_x={ratings_histogram_x}
+            rating_line = {rating_line}
+            // histogram_colors = {histogram_colors}
+            // rating_y={ratings_bubble_y}
+            // rating_size={ratings_bubble_size}
+            ratings_median_x={ratings_median_x}
+            rating_title={ratings_histogram_title}
+            rating_x_axis={ratings_histogram_x_axis}
+            // rating_y_axis={"Counts"}
+            rating_height={400}
+            rating_width={750}
+            rating_tick_size={12}
+          /> */}
+          
+          <Distplot
+          rating_distplot_data = {rating_distplot_data}
+          rating_distplot_layout = {rating_distplot_layout}
           />
-          <HorizontalBarChart h_bar={h_bar} />
+
         </div>
       </div>
 

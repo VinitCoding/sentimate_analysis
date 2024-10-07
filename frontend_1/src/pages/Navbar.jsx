@@ -6,8 +6,8 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
-          <img src={sentiment_analysis_logo} alt="logo" className="lg:w-[50px] md:w-[60px]"/>
-        <h2 className="font-semibold bg-white lg:text-2xl md:text-2xl text-darkBlue hover:cursor-default">
+          <img src={sentiment_analysis_logo} alt="logo" className="lg:w-[13%] md:w-[60px]"/>
+        <h2 className="font-semibold bg-white outfit lg:text-2xl md:text-2xl text-darkBlue hover:cursor-default">
           Sentiment Analysis
         </h2>
         </div>
